@@ -9,6 +9,7 @@ Things you need:
 How to install them:
 
 run
-```$ easy_install pip  
-
-$ pip install BeautifulSoup4```
+```
+$ easy_install pip3  
+$ pip3 install BeautifulSoup4
+```
