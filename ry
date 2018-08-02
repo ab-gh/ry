@@ -1,0 +1,37 @@
+#!/usr/local/bin/python3
+import requests
+import sys
+from bs4 import BeautifulSoup
+import json
+
+def main():
+    guild_ID=sys.argv[1]
+    #guild_ID = input("Guild ID: ")
+    url_combined = str("https://web.rythmbot.co/ajax/shard/" + guild_ID)
+    # specify the url
+    #print(url_combined)
+    page = requests.get(url_combined)
+    #print(page.text)
+    python_obj = json.loads(page.text)
+    guild_ID=int(python_obj["id"])
+    shard_ID=int(python_obj["shard"])
+    cluster_ID=int(python_obj["cluster"])
+    #"Guild ID: ", guild_ID,
+    print("\nShard Number: ", shard_ID, "\nCluster Number: ", cluster_ID, "\n")
+    status = requests.get("https://status.rythmbot.co")
+    soup = BeautifulSoup(status.text, 'html.parser')
+    shard_s = soup.find(class_='container')
+    shard_str=str(shard_s)
+    #print(shard_str)
+    shard_list = shard_str.split("</span><br/>\n<span class=\"bold\">")
+    chosen_shard=str(shard_list[shard_ID])
+    print(((chosen_shard.split("<"))[1].split(">"))[1]+((chosen_shard.split("<"))[3].split(">"))[1])
+    #for shard in shard_s:
+        #clean = shard.contents[0]
+        #print(clean)
+
+
+    #gray = shard_list.find_all(class_='gray')
+    #print(gray)
+
+main()
