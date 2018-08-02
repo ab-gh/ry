@@ -22,7 +22,7 @@ For now, download the `ry` file, and copy it inyo your `/usr/local/bin` director
 
 Its really easy. Just type `ry <guild id>`
 
-For exmaple, `ry 231471142685245440`
+For example, `ry 231471142685245440`
 
 Will output
 
@@ -33,4 +33,4 @@ Cluster Number:  4
 Shard 813 - CONNECTED
 ```
 
-If it doesnt, try again.
+If it doesn't, try again.
