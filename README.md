@@ -5,3 +5,7 @@ small little python thing for rythm shards
 Things you need:
 - python3[.6]
 - BeautifulSoup4
+
+How to install them:
+``easy_install pip  
+pip install BeautifulSoup4``
