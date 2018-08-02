@@ -7,5 +7,8 @@ Things you need:
 - BeautifulSoup4
 
 How to install them:
-``easy_install pip  
-pip install BeautifulSoup4``
+
+run
+```$ easy_install pip  
+
+$ pip install BeautifulSoup4```
