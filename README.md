@@ -24,10 +24,10 @@ Eventually I will write some kinda installs script. If anyone knows how to do th
 
 ## Usage
 
-`ry h` shows the help dialogue
-`ry <guild>` shows the shard, cluster, and status for a guild
-`ry f <shard>` **f**inds the cluster and status for a shards
-`ry s` **s**hows the full status for rythm
+-`ry h` shows the help dialogue
+-`ry <guild>` shows the shard, cluster, and status for a guild
+-`ry f <shard>` **f**inds the cluster and status for a shards
+-`ry s` **s**hows the full status for rythm
 
 ## Why is it called `ry`
 
