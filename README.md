@@ -18,9 +18,9 @@ Eventually I will write some kinda installs script. If anyone knows how to do th
 
 ### macOS
 
-For now, download the `ry` file, and copy it into your `/usr/local/bin` directory
-DO NOT copy into `/usr/bin` as thats always dangerous
-You might have a permission error, in which case just run `sudo chmod 777 /usr/local/bin/ry`
+- For now, download the `ry` file, and copy it into your `/usr/local/bin` directory
+- DO NOT copy into `/usr/bin` as thats always dangerous
+- You might have a permission error, in which case just run `sudo chmod 777 /usr/local/bin/ry`
 
 ## Usage
 
