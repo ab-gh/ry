@@ -24,20 +24,10 @@ Eventually I will write some kinda installs script. If anyone knows how to do th
 
 ## Usage
 
-Its really easy. Just type `ry <guild id>`
-
-For example, `ry 331517548636143626`
-
-Will output
-
-```
-Shard Number:  813
-Cluster Number:  4
-
-813 : CONNECTED
-```
-
-If it doesn't, try again.
+`ry h` shows the help dialogue
+`ry <guild>` shows the shard, cluster, and status for a guild
+`ry f <shard>` **f**inds the cluster and status for a shards
+`ry s` **s**hows the full status for rythm
 
 ## Why is it called `ry`
 

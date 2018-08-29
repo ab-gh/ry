@@ -72,7 +72,7 @@ def shard():
 
 
 if sys.argv[1] == "h":
-    print("ry cli help\nry\t\tdisplays this help command\nry <guild>\tshows the shard, cluster, and status for a guild\nry f <shard>\tshows the cluster and status for a shard\nry s\t\tshows the full status for rythm")
+    print("ry cli help\nry h\t\tdisplays this help command\nry <guild>\tshows the shard, cluster, and status for a guild\nry f <shard>\tshows the cluster and status for a shard\nry s\t\tshows the full status for rythm")
 elif sys.argv[1] == "s":
     status()
 elif sys.argv[1] == "status":
