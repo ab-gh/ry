@@ -38,3 +38,7 @@ Cluster Number:  4
 ```
 
 If it doesn't, try again.
+
+## Why is it called `ry`
+
+because its short
