@@ -12,7 +12,7 @@ def ide():
     python_obj = json.loads(page.text)
     shard_ID=int(python_obj["shard"])
     cluster_ID=int(python_obj["cluster"])
-    print(f"\nShard Number: {shard_ID}\nCluster Number: {cluster_ID}\n")
+    print(f"\nshard:\t\t {shard_ID}\ncluster\t\t: {cluster_ID}\n")
     rawstat = requests.get("https://status.rythmbot.co/raw")
     print(f"{shard_ID}:", json.loads(rawstat.text)[str(shard_ID)])
 
