@@ -16,21 +16,25 @@ $ pip3 install BeautifulSoup4
 
 Eventually I will write some kinda installs script. If anyone knows how to do that, dm me (ash#0001)
 
-For now, download the `ry` file, and copy it inyo your `/usr/local/bin` directory
+### macOS
+
+For now, download the `ry` file, and copy it into your `/usr/local/bin` directory
+DO NOT copy into `/usr/bin` as thats always dangerous
+You might have a permission error, in which case just run `sudo chmod 777 /usr/local/bin/ry`
 
 ## Usage
 
 Its really easy. Just type `ry <guild id>`
 
-For example, `ry 231471142685245440`
+For example, `ry 331517548636143626`
 
 Will output
 
 ```
-Shard Number:  813 
-Cluster Number:  4 
+Shard Number:  813
+Cluster Number:  4
 
-Shard 813 - CONNECTED
+813 : CONNECTED
 ```
 
 If it doesn't, try again.
