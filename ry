@@ -3,8 +3,9 @@ import requests
 import sys
 from bs4 import BeautifulSoup
 import json
+import math
 
-def main():
+def ide():
     guild_ID=sys.argv[1]
     url_combined = str("https://web.rythmbot.co/ajax/shard/" + guild_ID)
     page = requests.get(url_combined)
@@ -14,4 +15,71 @@ def main():
     print(f"\nShard Number: {shard_ID}\nCluster Number: {cluster_ID}\n")
     rawstat = requests.get("https://status.rythmbot.co/raw")
     print(f"{shard_ID}:", json.loads(rawstat.text)[str(shard_ID)])
-main()
+
+def status():
+    onlinecount=0
+    initi=[]
+    initd=[]
+    log=[]
+    webs=[]
+    ident=[]
+    awaiting=[]
+    load=[]
+    recon=[]
+    rawstat = requests.get("https://status.rythmbot.co/raw")
+    raw=json.loads(rawstat.text)
+    for i in raw:
+        if raw[str(i)]=="CONNECTED":
+            onlinecount=onlinecount+1
+        elif raw[str(i)]=="INITIALIZING":
+            initi.append(str(i))
+        elif raw[str(i)]=="INITIALIZED":
+            initd.append(str(i))
+        elif raw[str(i)]=="LOGGING_IN":
+            log.append(str(i))
+        elif raw[str(i)]=="CONNECTING_TO_WEBSOCKET":
+            webs.append(str(i))
+        elif raw[str(i)]=="IDENTIFYING_SESSION":
+            ident.append(str(i))
+        elif raw[str(i)]=="AWAITING_LOGIN_CONFIRMATION":
+            awaiting.append(str(i))
+        elif raw[str(i)]=="LOADING_SUBSYSTEMS":
+            load.append(str(i))
+        elif raw[str(i)]=="RECONNECTING":
+            recon.append(str(i))
+    if onlinecount==1760:
+        print("Rythm is fully operational!")
+        print(onlinecount, "\tOnline")
+    else:
+        print(onlinecount, "\tOnline")
+        problems=1760-onlinecount
+        print("There are\t", problems, "problems")
+        print(len(initi), "\t Initialising")
+        print(len(initd), "\t Initialised")
+        print(len(log), "\t Logging in")
+        print(len(webs), "\t Connecting to websocket")
+        print(len(ident), "\t Identifying")
+        print(len(awaiting), "\t Awaiting confirmation")
+        print(len(load), "\t Loading subsystems")
+        print(len(recon), "\t Reconnecting")
+
+def shard():
+    shard_ID=sys.argv[2]
+    print("shard:\t\t", shard_ID)
+    print("cluster:\t", math.floor(int(shard_ID)/196))
+    rawstat = requests.get("https://status.rythmbot.co/raw")
+    print("status:\t\t", json.loads(rawstat.text)[str(shard_ID)])
+
+
+if sys.argv[1] == "h":
+    print("ry cli help\nry\t\tdisplays this help command\nry <guild>\tshows the shard, cluster, and status for a guild\nry f <shard>\tshows the cluster and status for a shard\nry s\t\tshows the full status for rythm")
+elif sys.argv[1] == "s":
+    status()
+elif sys.argv[1] == "status":
+    status()
+elif sys.argv[1] == "shard":
+    shard()
+elif sys.argv[1] == "f":
+    shard()
+else:
+    ide()
