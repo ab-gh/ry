@@ -47,12 +47,12 @@ def status():
             load.append(str(i))
         elif raw[str(i)]=="RECONNECTING":
             recon.append(str(i))
-    if onlinecount==1760:
+    if onlinecount==2240:
         print("Rythm is fully operational!")
         print(onlinecount, "\tOnline")
     else:
         print(onlinecount, "\tOnline")
-        problems=1760-onlinecount
+        problems=2240-onlinecount
         print("There are\t", problems, "problems")
         print(len(initi), "\t Initialising")
         print(len(initd), "\t Initialised")
