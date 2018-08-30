@@ -53,7 +53,7 @@ def status():
     else:
         print(onlinecount, "\tOnline")
         problems=2240-onlinecount
-        print("There are\t", problems, "problems")
+        print(problems, "\t Shards with issues")
         print(len(initi), "\t Initialising")
         print(len(initd), "\t Initialised")
         print(len(log), "\t Logging in")
