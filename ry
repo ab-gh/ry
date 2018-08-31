@@ -5,7 +5,9 @@ from bs4 import BeautifulSoup
 import json
 import math
 
-def ide():
+shardcount=2240
+
+def ide(shardcount):
     guild_ID=sys.argv[1]
     url_combined = str("https://web.rythmbot.co/ajax/shard/" + guild_ID)
     page = requests.get(url_combined)
@@ -16,7 +18,7 @@ def ide():
     rawstat = requests.get("https://status.rythmbot.co/raw")
     print(f"{shard_ID}:", json.loads(rawstat.text)[str(shard_ID)])
 
-def status():
+def status(shardcount):
     onlinecount=0
     initi=[]
     initd=[]
@@ -26,6 +28,9 @@ def status():
     awaiting=[]
     load=[]
     recon=[]
+    attempt=[]
+    waitcon=[]
+    queue=[]
     rawstat = requests.get("https://status.rythmbot.co/raw")
     raw=json.loads(rawstat.text)
     for i in raw:
@@ -47,26 +52,52 @@ def status():
             load.append(str(i))
         elif raw[str(i)]=="RECONNECTING":
             recon.append(str(i))
-    if onlinecount==2240:
+        elif raw[str(i)]=="ATTEMPTING_TO_RECONNECT":
+            attempt.append(str(i))
+        elif raw[str(i)]=="WAITING_TO_RECONNECT":
+            waitcon.append(str(i))
+        elif raw[str(i)]=="RECONNECT_QUEUED":
+            queue.append(str(i))
+    if onlinecount==shardcount:
         print("Rythm is fully operational!")
-        print(onlinecount, "\tOnline")
+        print("-----------------------------")
+        print(onlinecount, "\t Online")
     else:
-        print(onlinecount, "\tOnline")
-        problems=2240-onlinecount
+        print("Rythm is ", round(((onlinecount)/shardcount), 1)*100, "% online")
+        print("------------------------------")
+        print(onlinecount, "\t Online")
+        problems=shardcount-onlinecount
+        print("------------------------------")
+        print("Count\t Status\t\t\t Shards\n")
         print(problems, "\t Shards with issues")
-        print(len(initi), "\t Initialising")
-        print(len(initd), "\t Initialised")
-        print(len(log), "\t Logging in")
-        print(len(webs), "\t Connecting to websocket")
-        print(len(ident), "\t Identifying")
-        print(len(awaiting), "\t Awaiting confirmation")
-        print(len(load), "\t Loading subsystems")
-        print(len(recon), "\t Reconnecting")
+        print(len(queue), "\t In reconnect queue\t", getstr(queue))
+        print(len(waitcon), "\t Waiting to reconnect\t", getstr(waitcon))
+        print(len(load), "\t Loading subsystems\t", getstr(load))
+        print(len(awaiting), "\t Awaiting confirmation\t", getstr(awaiting))
+        print(len(initi), "\t Initialising\t\t", getstr(initi))
+        print(len(initd), "\t Initialised\t\t", getstr(initd))
+        print(len(log), "\t Logging in\t\t", getstr(log))
+        print(len(webs), "\t Connecting to websocket", getstr(webs))
+        print(len(ident), "\t Identifying\t\t", getstr(ident))
+        print(len(recon), "\t Reconnecting\t\t", getstr(recon))
+        print(len(attempt), "\t Attempting to reconnect", getstr(attempt))
 
-def shard():
+
+def getstr(arre):
+    if len(arre)>5:
+        return "..."
+    elif len(arre)==0:
+        return ""
+    else:
+        arre_s=">"
+        for i in arre:
+            arre_s=arre_s+i+", "
+        return arre_s
+
+def shard(shardcount):
     shard_ID=sys.argv[2]
     print("shard:\t\t", shard_ID)
-    print("cluster:\t", math.floor(int(shard_ID)/int(math.ceil(2240/9))))
+    print("cluster:\t", math.floor(int(shard_ID)/int(math.ceil(shardcount/9))))
     rawstat = requests.get("https://status.rythmbot.co/raw")
     print("status:\t\t", json.loads(rawstat.text)[str(shard_ID)])
 
@@ -74,12 +105,12 @@ def shard():
 if sys.argv[1] == "h":
     print("ry cli help\nry h\t\tdisplays this help command\nry <guild>\tshows the shard, cluster, and status for a guild\nry f <shard>\tshows the cluster and status for a shard\nry s\t\tshows the full status for rythm")
 elif sys.argv[1] == "s":
-    status()
+    status(shardcount)
 elif sys.argv[1] == "status":
-    status()
+    status(shardcount)
 elif sys.argv[1] == "shard":
-    shard()
+    shard(shardcount)
 elif sys.argv[1] == "f":
-    shard()
+    shard(shardcount)
 else:
-    ide()
+    ide(shardcount)
